@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="LayoutPadrao"><!--  Add o thymelead -->
+<head>
+	<title>Pesquisa de Clientes</title>
+</head>	
+<section layout:fragment="conteudo">
+	<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="clearfix">
+					<h1 class="panel-title titulo-panel">Pesquisa de Clientes</h1>
+					<a class="btn btn-link link-panel" th:href="@{/clientes/novo}">Novo Cliente</a>
+				</div>	
+			</div>
+				<div class="panel-body">
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>								
+								<th class="col-md-4">Nome</th>
+								<th class="text-center col-md-2">CPF</th>								
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="cliente : ${clientes}">								
+								<td th:text="${cliente.nome}"></td>
+								<td class="text-center" th:text="${cliente.cpf}" ></td>								
+							</tr>
+							<tr>
+								<td colspan="6" th:if="${#lists.isEmpty(clientes)}">Nenhum titulo foi encontrado</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+	</div>
+</section>	
+
+
+</html>
