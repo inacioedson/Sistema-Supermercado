@@ -2,11 +2,7 @@ package com.ifgoiano.supermecado.model;
 
 import java.math.BigDecimal;
 
-<<<<<<< HEAD
-	
-	
-	
-=======
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +30,7 @@ public class Produto {
 	@Column(name = "qtd_estoque")
 	private BigDecimal qtdEstoque;
 	
-	@Column(name = "qtd_estoque")
+	@Column(name = "qtd_minimo")
 	private BigDecimal qtdMinimo;
 	
 	@Column(name = "fk_categoria")
@@ -126,5 +122,5 @@ public class Produto {
 	}
 	
 		
->>>>>>> branch 'master' of https://github.com/Arcelz/Sistema-Supermercado.git
+
 }
