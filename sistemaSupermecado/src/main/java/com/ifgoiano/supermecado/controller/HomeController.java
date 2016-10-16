@@ -10,6 +10,6 @@ public class HomeController {
 	@RequestMapping("/index")
 	public String novo()
 	{
-		return"index";
+		return"CadastroProduto";
 	}
 }
