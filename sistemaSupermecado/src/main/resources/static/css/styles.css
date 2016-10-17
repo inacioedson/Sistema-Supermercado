@@ -28,7 +28,7 @@ body {
     height: 45px;
     padding-top: 0px;
     border-top-width: 0px;
-    margin-top: 30px;
+    
 }
 nav{
 	width:85px;
@@ -129,13 +129,20 @@ nav{
 	padding: 10px 0px;
 	background-color: transparent;
 }
-
+.alert{	
+    margin-bottom: 2px;
+    margin-right: 22px;	
+    
+    
+    
+}
 .block {
 	border: 1px solid #ccc;
 	background: white;
 	margin: 1em 0em;
 	border-top: none;
 	margin-right: 2%;
+	margin-top: 0px;
 }
 
 .block-content {
