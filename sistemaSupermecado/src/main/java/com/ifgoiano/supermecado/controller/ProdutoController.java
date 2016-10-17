@@ -1,11 +1,9 @@
 package com.ifgoiano.supermecado.controller;
 
-import javax.ws.rs.POST;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.solr.core.RequestMethod;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,7 +25,8 @@ public class ProdutoController {
 		ModelAndView mv = new ModelAndView(CADASTRO_PRODUTO);
 		return mv;
 	}
-	
-	@RequestMapping(method=RequestMethod.POST)
-	public String salvar(@Validated)
+	@RequestMapping(method = RequestMethod.POST)
+	public String salvar(){
+		return "cadastro";
+	}
 }
