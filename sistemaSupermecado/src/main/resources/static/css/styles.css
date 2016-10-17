@@ -12,44 +12,6 @@ body {
     }
 }
 
-#sidebar{
-  
-    width: 190px;
-}
-
-
-
-.clear{
-	 overflow: auto;
-	
-}
-
-.menu2{
-    height: 45px;
-    padding-top: 0px;
-    border-top-width: 0px;
-    
-}
-nav{
-	width:85px;
-	
-}
-.lateralLe {
-    float: left;
-    padding: 80 px;
-    width: 210px;
-    
-}
-
-.lateralDi{	
-	margin-left: 214px;    
-}
-/* .lateralEsquerda{ */
-	
-    
-/*     border: 3px solid #73AD21; */
-	
-/* } */
 
 /** Login Page **/
 #login {
@@ -129,20 +91,12 @@ nav{
 	padding: 10px 0px;
 	background-color: transparent;
 }
-.alert{	
-    margin-bottom: 2px;
-    margin-right: 22px;	
-    
-    
-    
-}
+
 .block {
 	border: 1px solid #ccc;
 	background: white;
 	margin: 1em 0em;
 	border-top: none;
-	margin-right: 2%;
-	margin-top: 0px;
 }
 
 .block-content {
