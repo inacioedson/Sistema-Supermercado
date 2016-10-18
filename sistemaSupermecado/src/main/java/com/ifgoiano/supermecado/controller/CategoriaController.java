@@ -18,10 +18,10 @@ public class CategoriaController {
 	@Autowired
 	private Categorias categorias;
 	
-	/*@RequestMapping("/novo")
+	@RequestMapping("/novo")
 	public String novo(){
 		
-		return"CadastroCategoria";
+		return"CadastroCategoria2";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -32,6 +32,6 @@ public class CategoriaController {
 		mv.addObject("mensagem", "A operação foi completa com sucesso");
 		return mv;
 		
-	}*/
+	}
 
 }
