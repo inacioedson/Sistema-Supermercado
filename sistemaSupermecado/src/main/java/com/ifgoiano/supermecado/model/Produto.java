@@ -1,11 +1,16 @@
 package com.ifgoiano.supermecado.model;
 
 import java.math.BigDecimal;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name = "produtos")
@@ -36,9 +41,19 @@ public class Produto {
 	@Column(name = "fk_categoria")
 	private int idCategoria ;
 
+	@OneToOne(cascade = CascadeType.ALL, fetch =  FetchType.EAGER)
+	@JoinColumn(name = "fk_categoria", referencedColumnName="pk_categoria", insertable=false, updatable=false)
+	private Categoria categoria;
 	
 	
-	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
 	public long getId() {
 		return id;
 	}

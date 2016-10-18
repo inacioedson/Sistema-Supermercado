@@ -27,47 +27,43 @@
                                       <fieldset>
                                         <legend>Cadastro de Produtos</legend>
                                         <div class="control-group">
-                                          <label class="control-label" for="focusedInput">Codigo de Barras</label>
+                                          <label class="control-label" for="focusedCodigoBarra">Codigo de Barras</label>
                                           <div class="controls">
-                                            <input class="input-xlarge focused" id="focusedInput" type="text" name="codigoBarras"/>
+                                            <input class="input-xlarge focused" id="focusedCodigoBarra" type="text" name="codigoBarras"/>
                                           </div>
                                         </div>
                                          <div class="control-group">
-                                          <label class="control-label" for="focusedInput">Nome</label>
+                                          <label class="control-label" for="focusedNome">Nome</label>
                                           <div class="controls">
-                                            <input class="input-xlarge focused" id="focusedInput" type="text" name="nome"/>
+                                            <input class="input-xlarge focused" id="focusedNome" type="text" name="nome"/>
                                           </div>
                                         </div>
                                          <div class="control-group">
-                                          <label class="control-label" for="focusedInput">Valor Unitario</label>
+                                          <label class="control-label" for="focusedValorUnitario">Valor Unitario</label>
                                           <div class="controls">
-                                            <input class="input-xlarge focused" id="focusedInput" type="text" name="valorUnitario"/>
+                                            <input class="input-xlarge focused" id="focusedValorUnitario" type="text" name="valorUnitario"/>
                                           </div>
                                         </div>
                                          <div class="control-group">
-                                          <label class="control-label" for="focusedInput">Quantidade Estoque</label>
+                                          <label class="control-label" for="focusedQuantidadeEstoque">Quantidade Estoque</label>
                                           <div class="controls">
-                                            <input class="input-xlarge focused" id="focusedInput" type="text" name="qtdEstoque"/>
+                                            <input class="input-xlarge focused" id="focusedQuantidadeEstoque" type="text" name="qtdEstoque"/>
                                           </div>
                                         </div>
                               			  <div class="control-group">
-                                          <label class="control-label" for="focusedInput">Quantidade Estoque Minimo</label>
+                                          <label class="control-label" for="focusedQuantidadeEstoqueMin">Quantidade Estoque Minimo</label>
                                           <div class="controls">
-                                            <input class="input-xlarge focused" id="focusedInput" type="text" name="qtdMinimo"/>
-                                          </div>
-                                        </div>
-                                        <div class="control-group">
-                                          <label class="control-label" for="focusedInput">Quantidade Estoque Minimo</label>
-                                          <div class="controls">
-                                            <input class="input-xlarge focused" id="focusedInput" type="text" name="qtdMinimo"/>
+                                            <input class="input-xlarge focused" id="focusedQuantidadeEstoqueMin" type="text" name="qtdMinimo"/>
                                           </div>
                                         </div>
 										<div class="control-group">
-                                          <label class="control-label" for="focusedInput">Pk categoria</label>
-                                          <div class="controls">
-                                            <input class="input-xlarge focused" id="focusedInput" type="text" name="idCategoria"/>
-                                          </div>
-                                        </div>
+										<label class="control-label" for="focusCategoria">Categoria</label>
+											<div class="controls">
+											<select class="form-control" id="focusCategoria" name="idCategoria">
+													<option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nome}"></option> 
+												</select>
+													</div>
+														</div>
                                         <div class="form-actions">
                                           <button type="submit" class="btn btn-primary">Save changes</button>
                                           <button type="reset" class="btn">Cancel</button>
