@@ -212,3 +212,11 @@ body {
   font-size: 12px;
   padding-left: 2px;
 }
+
+.btn-default{
+	margin-bottom: 15px;
+}
+a.nounderline:link 
+{ 
+ text-decoration:none; 
+} 
