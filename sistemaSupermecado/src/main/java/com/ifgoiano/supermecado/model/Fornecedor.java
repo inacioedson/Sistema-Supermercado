@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class Fornecedores {
+public class Fornecedor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,7 +46,7 @@ public class Fornecedores {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Fornecedores other = (Fornecedores) obj;
+		Fornecedor other = (Fornecedor) obj;
 		if (idFornecedor != other.idFornecedor)
 			return false;
 		return true;
