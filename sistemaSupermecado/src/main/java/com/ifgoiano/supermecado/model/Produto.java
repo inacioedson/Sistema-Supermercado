@@ -1,8 +1,6 @@
 package com.ifgoiano.supermecado.model;
 
 import java.math.BigDecimal;
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,6 +20,7 @@ public class Produto {
 	@Column(name = "codigo_barras")
 	private String codigoBarras;
 	
+	@Column(name = "nome")
 	private String nome;
 	
 	@Column(name = "valor_unitario")
@@ -33,9 +32,13 @@ public class Produto {
 	@Column(name = "qtd_minimo")
 	private BigDecimal qtdMinimo;
 	
-	@Column(name = "fk_categoria")
-	private int idCategoria;
 
+	@Column(name = "fk_categoria")
+	private int idCategoria ;
+
+	
+	
+	
 	public long getId() {
 		return id;
 	}

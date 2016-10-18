@@ -1,6 +1,5 @@
 package com.ifgoiano.supermecado.model;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +20,8 @@ public class Categoria {
 	private String nome;
 	
 	private String descricao;
-
+	
+	
 	public long getId() {
 		return id;
 	}
