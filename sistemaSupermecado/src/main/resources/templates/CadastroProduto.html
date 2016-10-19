@@ -23,7 +23,7 @@
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
-                                     <form class="form-horizontal" method="POST" action="/produtos" >
+                                     <form  name="formProduto" class="form-horizontal" method="POST" action="/produtos" >
                                       <fieldset>
                                         <legend>Cadastro de Produtos</legend>
                                         <div class="control-group">
@@ -59,11 +59,15 @@
 										<div class="control-group">
 										<label class="control-label" for="focusCategoria">Categoria</label>
 											<div class="controls">
-											<select class="form-control" id="focusCategoria" name="idCategoria">
-													<option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nome}"></option> 
+											<select class="form-control" id="focusCategoria" name="idCategoria" onchange="cadastroProdutoSelect()">
+													<option></option>
+													<option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nome}"></option>
+													<option></option>	
+													<option value="1" class="modopt">Cadastrar Titulo</option>
 												</select>
 													</div>
 														</div>
+							
                                         <div class="form-actions">
                                           <button type="submit" class="btn btn-primary">Save changes</button>
                                           <button type="reset" class="btn">Cancel</button>
@@ -79,5 +83,5 @@
                  </div>
 			</div>
 		</section>
-	
+
 </html>
