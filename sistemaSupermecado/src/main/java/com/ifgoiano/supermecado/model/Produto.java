@@ -19,7 +19,7 @@ public class Produto {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "pk_produto")
+	@Column(name = "pk_produtos")
 	private long id;
 	
 	@Column(name = "codigo_barras")

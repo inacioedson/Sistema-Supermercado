@@ -43,7 +43,7 @@ public class ProdutoController {
 	@RequestMapping
 	public ModelAndView pesquisar(){
 		List<Produto> todosProduto = produtos.findAll();
-		ModelAndView mv = new ModelAndView("ListarProdutos");
+		ModelAndView mv = new ModelAndView("PesquisarProduto");
 		mv.addObject("produtos", todosProduto);
 		return mv;
 	}
