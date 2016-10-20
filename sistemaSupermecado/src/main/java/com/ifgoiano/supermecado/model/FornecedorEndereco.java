@@ -1,18 +1,26 @@
 package com.ifgoiano.supermecado.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="fornecedores_enderecos")
 public class FornecedorEndereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "pk_endereco")
 	private long idEndereco;
 	
-	@Column(name = "fk_fornecedor")
-	private long idFornecedor;
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "fk_fornecedor")
+	private Fornecedor fornecedor;
 	
 	private String logradouro;
 	private String bairro;
@@ -26,11 +34,12 @@ public class FornecedorEndereco {
 	public void setIdEndereco(long idEndereco) {
 		this.idEndereco = idEndereco;
 	}
-	public long getIdFornecedor() {
-		return idFornecedor;
+	
+	public Fornecedor getFornecedor() {
+		return fornecedor;
 	}
-	public void setIdFornecedor(long idFornecedor) {
-		this.idFornecedor = idFornecedor;
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 	public String getLogradouro() {
 		return logradouro;
@@ -72,8 +81,7 @@ public class FornecedorEndereco {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (idEndereco ^ (idEndereco >>> 32));
-		result = prime * result + (int) (idFornecedor ^ (idFornecedor >>> 32));
+		result = prime * result + (int) (idEndereco ^ (idEndereco >>> 32));		
 		return result;
 	}
 	@Override
@@ -87,13 +95,12 @@ public class FornecedorEndereco {
 		FornecedorEndereco other = (FornecedorEndereco) obj;
 		if (idEndereco != other.idEndereco)
 			return false;
-		if (idFornecedor != other.idFornecedor)
-			return false;
+		
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "FornecedoresEnderecos [idEndereco=" + idEndereco + ", idFornecedor=" + idFornecedor + ", logradouro="
+		return "FornecedoresEnderecos [idEndereco=" + idEndereco + ", idFornecedor="  + ", logradouro="
 				+ logradouro + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", pais=" + pais
 				+ ", cep=" + cep + "]";
 	}
