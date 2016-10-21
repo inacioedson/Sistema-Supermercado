@@ -49,8 +49,7 @@
 
 						<div class="block-content collapse in">
 							<div class="span12">
-								<form name="formProduto" class="form-horizontal" method="POST"
-									action="/produtos">
+								<form name="formProduto" class="form-horizontal" method="POST" onsubmit="return validaForm()" action="/produtos">
 									<fieldset>
 										<legend>Cadastro de Produtos</legend>
 										<div class="control-group">
@@ -58,8 +57,7 @@
 												de Barras</label>
 												
 											<div class="controls">
-												<input class="input-xlarge focused" id="focusedCodigoBarra"
-													type="text" name="codigoBarras" />
+												<input class="input-xlarge focused" id="focusedCodigoBarra" type="text" name="codigoBarras" />
 													
 											</div>
 
@@ -67,8 +65,7 @@
 										<div class="control-group">
 											<label class="control-label" for="focusedNome">Nome</label>
 											<div class="controls">
-												<input class="input-xlarge focused" id="focusedNome"
-													type="text" name="nome" />
+												<input class="input-xlarge focused" id="focusedNome" type="text" name="nome" />
 											</div>
 										</div>
 										<div class="control-group">
@@ -125,6 +122,7 @@
 											<button type="reset" class="btn">Cancel</button>
 										</div>
 									</fieldset>
+									<script src="/js/validacao.js"></script>
 								</form>
 
 							</div>
@@ -134,6 +132,7 @@
 			</div>
 		</div>
 	</div>
+	
 </section>
 
 </html>
