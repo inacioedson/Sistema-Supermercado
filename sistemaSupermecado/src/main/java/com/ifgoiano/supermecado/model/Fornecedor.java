@@ -17,6 +17,13 @@ public class Fornecedor {
 	private long idFornecedor;
 	private String nome;
 	private String cnpj;
+	
+	public Fornecedor(String nome, String cnpj){
+		this.nome=nome;
+		this.cnpj=cnpj;
+	}
+	
+	
 	public long getIdFornecedor() {
 		return idFornecedor;
 	}

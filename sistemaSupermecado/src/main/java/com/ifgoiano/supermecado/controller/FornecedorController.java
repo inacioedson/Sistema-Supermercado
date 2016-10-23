@@ -1,5 +1,7 @@
 package com.ifgoiano.supermecado.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ifgoiano.supermecado.model.Fornecedor;
 import com.ifgoiano.supermecado.model.FornecedorEndereco;
+import com.ifgoiano.supermecado.model.Produto;
 import com.ifgoiano.supermecado.repository.Fornecedores;
 import com.ifgoiano.supermecado.repository.FornecedoresEnderecos;
 
@@ -43,6 +46,13 @@ public class FornecedorController {
 		
 	}
 	
+	@RequestMapping
+	public ModelAndView pesquisar(){
+		List<Fornecedor> todosFornecedores = forne.consulta();
+		ModelAndView mv = new ModelAndView("PesquisaFornecedor");
+		mv.addObject("fornecedores", todosFornecedores);
+		return mv;
+	}
 	
 
 }
