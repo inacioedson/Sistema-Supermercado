@@ -1,7 +1,7 @@
 function validaFormCadProduto() {
 
-	var formProduto = document.forms['formProduto'];
-	var formProdutoOk = true;
+	let formProduto = document.forms['formProduto'];
+	let formProdutoOk = true;
 
 	if (!validaCodigoBarras(formProduto.codigoBarras.value)) {
 
@@ -32,7 +32,7 @@ function validaFormCadProduto() {
 
 		formProdutoOk = false;
 	}
-	
+
 	validarElementoNome();
 
 	if (formProdutoOk)
@@ -86,9 +86,9 @@ function validaFormCadProduto() {
 
 	function validaCategoria() {
 		// cadastroProdutoSelect();
-		var categoria = document.forms['formProduto'].idCategoria;
+		let categoria = document.forms['formProduto'].idCategoria;
 
-		var categoriaIndex = categoria.selectedIndex;
+		let categoriaIndex = categoria.selectedIndex;
 		if (categoriaIndex == 0 | categoriaIndex == undefined)
 			return false;
 		else
@@ -98,8 +98,8 @@ function validaFormCadProduto() {
 
 function validaFormCadCategoria() {
 
-	var formCategoria = document.forms['formCategoria'];
-	var formCategoriaOK = true;
+	let formCategoria = document.forms['formCategoria'];
+	let formCategoriaOK = true;
 
 	if (!validaNome(formCategoria.nome.value)) {
 		console.log('Nome da categoria errado');
