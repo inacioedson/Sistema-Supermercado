@@ -1,41 +1,53 @@
 function validaFormCadProduto() {
+
 	var formProduto = document.forms['formProduto'];
 	var formProdutoOk = true;
 
 	if (!validaCodigoBarras(formProduto.codigoBarras.value)) {
-		
+
 		formProdutoOk = false;
 	}
 
 	if (!validaNome(formProduto.nome.value)) {
-		
+
 		formProdutoOk = false;
 	}
 
 	if (!validaValorUnitario(formProduto.valorUnitario.value)) {
-		
+
 		formProdutoOk = false;
 	}
 
 	if (!validaQtdEstoque(formProduto.qtdEstoque.value)) {
-		
+
 		formProdutoOk = false;
 	}
 
 	if (!validaQtdMinimaEstoque(formProduto.qtdMinimo.value)) {
-		
+
 		formProdutoOk = false;
 	}
 
 	if (!validaCategoria()) {
-		
+
 		formProdutoOk = false;
 	}
+	
+	validarElementoNome();
 
 	if (formProdutoOk)
 		return true;
 	else
 		return false;
+
+	function validarElementoNome() {
+		let
+		elementoNome = document.forms['formProduto'].nome;
+		if (validaNome(elementoNome.value))
+			elementoNome.classList.remove("has-error");
+		else
+			elementoNome.classList.add("has-error");
+	}
 
 	function validaCodigoBarras(codigoBarras) {
 		if (codigoBarras == "" | codigoBarras == undefined)
@@ -71,17 +83,17 @@ function validaFormCadProduto() {
 		else
 			return true;
 	}
-}
 
-function validaCategoria() {
-	// cadastroProdutoSelect();
-	var categoria = document.forms['formProduto'].idCategoria;
-	
-	var categoriaIndex = categoria.selectedIndex;
-	if (categoriaIndex == 0 | categoriaIndex == undefined)
-		return false;
-	else
-		return true;
+	function validaCategoria() {
+		// cadastroProdutoSelect();
+		var categoria = document.forms['formProduto'].idCategoria;
+
+		var categoriaIndex = categoria.selectedIndex;
+		if (categoriaIndex == 0 | categoriaIndex == undefined)
+			return false;
+		else
+			return true;
+	}
 }
 
 function validaFormCadCategoria() {
