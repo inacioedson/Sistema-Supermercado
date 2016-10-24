@@ -64,7 +64,9 @@ public class ProdutoController {
 	
 	@RequestMapping("{id}")
 	public ModelAndView edicao(@PathVariable("id") Produto prod){
+		List<Categoria> todosCategoria = categorias.findAll();
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
+		mv.addObject("categorias", todosCategoria);
 		mv.addObject(prod);
 		return mv;
 	}
