@@ -4,13 +4,18 @@ package com.ifgoiano.supermecado.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.apache.bcel.generic.NEW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ifgoiano.supermecado.model.Categoria;
 import com.ifgoiano.supermecado.model.Produto;
@@ -22,24 +27,32 @@ import com.ifgoiano.supermecado.repository.Produtos;
 @RequestMapping("/produtos")
 public class ProdutoController {
 	
+	
+	private static final String CADASTRO_VIEW= "CadastroProduto";
+	
+	
 	@Autowired
 	private Produtos produtos;
 	@Autowired
 	private Categorias categorias;
+	
+	
 	@RequestMapping("/novo")
 	public ModelAndView novo(){
 		List<Categoria> todosCategoria = categorias.findAll();
-		ModelAndView mv = new ModelAndView("CadastroProduto");
+		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 		mv.addObject("categorias", todosCategoria);
+		mv.addObject(new Produto());
 		return mv;
 	}
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView salvar(Produto prod){
-		
+	public String salvar(@Validated Produto prod,Errors errors,RedirectAttributes attributes){
+		if(errors.hasErrors()){
+			return CADASTRO_VIEW;
+		}
 		produtos.save(prod);
-		ModelAndView mv = new ModelAndView("CadastroProduto");
-		mv.addObject("mensagem","Titulo salvo com sucesso!");
-		return mv;
+		attributes.addFlashAttribute("mensagem","Titulo salvo com sucesso!");
+		return "redirect:/produtos/novo";
 	}
 	@RequestMapping
 	public ModelAndView pesquisar(){
@@ -49,5 +62,11 @@ public class ProdutoController {
 		return mv;
 	}
 	
+	@RequestMapping("{id}")
+	public ModelAndView edicao(@PathVariable("id") Produto prod){
+		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
+		mv.addObject(prod);
+		return mv;
+	}
 
 }

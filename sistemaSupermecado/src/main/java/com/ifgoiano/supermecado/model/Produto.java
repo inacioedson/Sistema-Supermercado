@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name = "produtos")
 
@@ -24,20 +27,47 @@ public class Produto {
 	@Column(name = "pk_produtos")
 	private long id;
 	
+	@NotEmpty(message="Codigo de barras é obrigatório !")
+	@NotNull(message="Codigo de barras é obrigatório !")
 	@Column(name = "codigo_barras")
 	private String codigoBarras;
 	
+	@NotNull(message="Nome do produto é obrigatório !")
+	@NotEmpty(message="Nome do produto é obrigatório !")
 	@Column(name = "nome")
 	private String nome;
+	
 	
 	@Column(name = "valor_unitario")
 	private BigDecimal valorUnitario;
 	
+	@NotNull(message="O tipo da medida é obrigatório !")
 	@Column(name = "tipo_medida")
 	private String tipoMedida;
 	
 	@Column(name="qtd_Estoque")
 	private BigDecimal qtdEstoque;
+	
+	@NotNull(message="A quantidade medida é obrigatória !")
+	@Column(name= "qtd_medida")
+	private BigDecimal qtdMedida;
+	
+	
+	@NotNull(message="A quantidade maxima e obrigatória !")
+	@Column(name = "qtd_maxima")
+	private BigDecimal qtdMaxima;
+	
+	@NotNull(message="A quantidade minima e obrigatória !")
+	@Column(name = "qtd_minimo")
+	private BigDecimal qtdMinimo;
+	
+	
+	@Column(name = "fk_categoria")
+	private int idCategoria ;
+
+	@OneToOne(cascade = CascadeType.ALL, fetch =  FetchType.EAGER)
+	@JoinColumn(name = "fk_categoria", referencedColumnName="pk_categoria", insertable=false, updatable=false)
+	private Categoria categoria;
 	
 	public BigDecimal getQtdEstoque() {
 		return qtdEstoque;
@@ -63,23 +93,6 @@ public class Produto {
 		this.qtdMedida = qtdMedida;
 	}
 
-	@Column(name= "qtd_medida")
-	private BigDecimal qtdMedida;
-
-	@Column(name = "qtd_maxima")
-	private BigDecimal qtdMaxima;
-	
-	@Column(name = "qtd_minimo")
-	private BigDecimal qtdMinimo;
-	
-
-	@Column(name = "fk_categoria")
-	private int idCategoria ;
-
-	@OneToOne(cascade = CascadeType.ALL, fetch =  FetchType.EAGER)
-	@JoinColumn(name = "fk_categoria", referencedColumnName="pk_categoria", insertable=false, updatable=false)
-	private Categoria categoria;
-	
 	
 	public Categoria getCategoria() {
 		return categoria;
