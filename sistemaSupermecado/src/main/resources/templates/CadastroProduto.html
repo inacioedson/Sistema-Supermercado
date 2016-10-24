@@ -68,20 +68,31 @@
 												<input class="input-xlarge focused" id="focusedNome" type="text" name="nome" />
 											</div>
 										</div>
+										
 										<div class="control-group">
-											<label class="control-label" for="focusedValorUnitario">Valor
-												Unitario</label>
+											<label class="control-label" for="focusCategoria">Medida</label>
 											<div class="controls">
-												<input class="input-xlarge focused"
-													id="focusedValorUnitario" type="text" name="valorUnitario" />
+												<select class="form-control" id="focusCategoria"
+													name="tipoMedida" onchange="cadastroProdutoSelect()">
+													<option ></option>
+													<option value="KG">Kilo</option>
+													<option value="LT">Litro</option>
+												</select>
+										
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="focusedNome">Quantidade Medida</label>
+											<div class="controls">
+												<input class="input-xlarge focused" id="focusedNome" type="text" name="qtdMedida" />
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="focusedQuantidadeEstoque">Quantidade
-												Estoque</label>
+												Estoque Maximo</label>
 											<div class="controls">
 												<input class="input-xlarge focused"
-													id="focusedQuantidadeEstoque" type="text" name="qtdEstoque" />
+													id="focusedQuantidadeEstoque" type="text" name="qtdMaxima" />
 											</div>
 										</div>
 										<div class="control-group">

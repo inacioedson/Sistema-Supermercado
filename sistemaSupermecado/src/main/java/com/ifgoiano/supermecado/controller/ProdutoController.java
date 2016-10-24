@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ifgoiano.supermecado.model.Categoria;
 import com.ifgoiano.supermecado.model.Produto;
+
 import com.ifgoiano.supermecado.repository.Categorias;
 import com.ifgoiano.supermecado.repository.Produtos;
 
@@ -47,5 +48,6 @@ public class ProdutoController {
 		mv.addObject("produtos", todosProduto);
 		return mv;
 	}
+	
 
 }

@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,8 +33,41 @@ public class Produto {
 	@Column(name = "valor_unitario")
 	private BigDecimal valorUnitario;
 	
-	@Column(name = "qtd_estoque")
+	@Column(name = "tipo_medida")
+	private String tipoMedida;
+	
+	@Column(name="qtd_Estoque")
 	private BigDecimal qtdEstoque;
+	
+	public BigDecimal getQtdEstoque() {
+		return qtdEstoque;
+	}
+
+	public void setQtdEstoque(BigDecimal qtdEstoque) {
+		this.qtdEstoque = qtdEstoque;
+	}
+
+	public String getTipoMedida() {
+		return tipoMedida;
+	}
+
+	public void setTipoMedida(String tipoMedida) {
+		this.tipoMedida = tipoMedida;
+	}
+
+	public BigDecimal getQtdMedida() {
+		return qtdMedida;
+	}
+
+	public void setQtdMedida(BigDecimal qtdMedida) {
+		this.qtdMedida = qtdMedida;
+	}
+
+	@Column(name= "qtd_medida")
+	private BigDecimal qtdMedida;
+
+	@Column(name = "qtd_maxima")
+	private BigDecimal qtdMaxima;
 	
 	@Column(name = "qtd_minimo")
 	private BigDecimal qtdMinimo;
@@ -56,6 +91,14 @@ public class Produto {
 
 	public long getId() {
 		return id;
+	}
+
+	public BigDecimal getQtdMaxima() {
+		return qtdMaxima;
+	}
+
+	public void setQtdMaxima(BigDecimal qtdMaxima) {
+		this.qtdMaxima = qtdMaxima;
 	}
 
 	public void setId(long id) {
@@ -86,13 +129,7 @@ public class Produto {
 		this.valorUnitario = valorUnitario;
 	}
 
-	public BigDecimal getQtdEstoque() {
-		return qtdEstoque;
-	}
-
-	public void setQtdEstoque(BigDecimal qtdEstoque) {
-		this.qtdEstoque = qtdEstoque;
-	}
+	
 
 	public BigDecimal getQtdMinimo() {
 		return qtdMinimo;
@@ -135,7 +172,7 @@ public class Produto {
 	@Override
 	public String toString() {
 		return "Produto [id=" + id + ", codigoBarras=" + codigoBarras + ", nome=" + nome + ", valorUnitario="
-				+ valorUnitario + ", qtdEstoque=" + qtdEstoque + ", qtdMinimo=" + qtdMinimo + ", idCategoria="
+				+ valorUnitario + ", qtdEstoque=" + qtdMaxima + ", qtdMinimo=" + qtdMinimo + ", idCategoria="
 				+ idCategoria + "]";
 	}
 	
