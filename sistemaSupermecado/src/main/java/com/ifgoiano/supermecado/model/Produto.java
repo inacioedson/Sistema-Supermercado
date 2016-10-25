@@ -12,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name = "produtos")
 
@@ -22,22 +27,41 @@ public class Produto {
 	@Column(name = "pk_produtos")
 	private long id;
 	
+	@NotEmpty(message="Codigo de barras é obrigatório !")
+	@NotNull(message="Codigo de barras é obrigatório !")
 	@Column(name = "codigo_barras")
 	private String codigoBarras;
 	
+	@NotNull(message="Nome do produto é obrigatório !")
+	@NotEmpty(message="Nome do produto é obrigatório !")
 	@Column(name = "nome")
 	private String nome;
+	
 	
 	@Column(name = "valor_unitario")
 	private BigDecimal valorUnitario;
 	
-	@Column(name = "qtd_estoque")
+	@NotNull(message="O tipo da medida é obrigatório !")
+	@Column(name = "tipo_medida")
+	private String tipoMedida;
+	
+	@Column(name="qtd_Estoque")
 	private BigDecimal qtdEstoque;
 	
+	@NotNull(message="A quantidade medida é obrigatória !")
+	@Column(name= "qtd_medida")
+	private BigDecimal qtdMedida;
+	
+	
+	@NotNull(message="A quantidade maxima e obrigatória !")
+	@Column(name = "qtd_maxima")
+	private BigDecimal qtdMaxima;
+	
+	@NotNull(message="A quantidade minima e obrigatória !")
 	@Column(name = "qtd_minimo")
 	private BigDecimal qtdMinimo;
 	
-
+	
 	@Column(name = "fk_categoria")
 	private int idCategoria ;
 
@@ -45,6 +69,30 @@ public class Produto {
 	@JoinColumn(name = "fk_categoria", referencedColumnName="pk_categoria", insertable=false, updatable=false)
 	private Categoria categoria;
 	
+	public BigDecimal getQtdEstoque() {
+		return qtdEstoque;
+	}
+
+	public void setQtdEstoque(BigDecimal qtdEstoque) {
+		this.qtdEstoque = qtdEstoque;
+	}
+
+	public String getTipoMedida() {
+		return tipoMedida;
+	}
+
+	public void setTipoMedida(String tipoMedida) {
+		this.tipoMedida = tipoMedida;
+	}
+
+	public BigDecimal getQtdMedida() {
+		return qtdMedida;
+	}
+
+	public void setQtdMedida(BigDecimal qtdMedida) {
+		this.qtdMedida = qtdMedida;
+	}
+
 	
 	public Categoria getCategoria() {
 		return categoria;
@@ -56,6 +104,14 @@ public class Produto {
 
 	public long getId() {
 		return id;
+	}
+
+	public BigDecimal getQtdMaxima() {
+		return qtdMaxima;
+	}
+
+	public void setQtdMaxima(BigDecimal qtdMaxima) {
+		this.qtdMaxima = qtdMaxima;
 	}
 
 	public void setId(long id) {
@@ -86,13 +142,7 @@ public class Produto {
 		this.valorUnitario = valorUnitario;
 	}
 
-	public BigDecimal getQtdEstoque() {
-		return qtdEstoque;
-	}
-
-	public void setQtdEstoque(BigDecimal qtdEstoque) {
-		this.qtdEstoque = qtdEstoque;
-	}
+	
 
 	public BigDecimal getQtdMinimo() {
 		return qtdMinimo;
@@ -135,7 +185,7 @@ public class Produto {
 	@Override
 	public String toString() {
 		return "Produto [id=" + id + ", codigoBarras=" + codigoBarras + ", nome=" + nome + ", valorUnitario="
-				+ valorUnitario + ", qtdEstoque=" + qtdEstoque + ", qtdMinimo=" + qtdMinimo + ", idCategoria="
+				+ valorUnitario + ", qtdEstoque=" + qtdMaxima + ", qtdMinimo=" + qtdMinimo + ", idCategoria="
 				+ idCategoria + "]";
 	}
 	

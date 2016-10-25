@@ -56,21 +56,27 @@
 															<tr>
 																<th>Codigo de Barras</th>
 																<th>Nome</th>
-																<th>Valor Unitario</th>
 																<th>Quantidade Estoque</th>
+																<th>Quantidade Maxima</th>
 																<th>Quantidade Minimo</th>
 																<th>Categoria</th>
+																<th class="col-md-1"></th>
 															</tr>
 														</thead>
 														<tbody>
 															<tr class="odd gradeX" th:each="produto : ${produtos}">
 																<td th:text="${produto.codigoBarras}"></td>
 																<td th:text="${produto.nome}"></td>
-																<td th:text="${produto.valorUnitario}"></td>
 																<td class="center" th:text="${produto.qtdEstoque}">
 																</td>
+																<td th:text="${produto.qtdMaxima}"></td>
 																<td class="center" th:text="${produto.qtdMinimo}"></td>
 																<td class="center" th:text="${produto.categoria.nome}"></td>
+																<td class="center">
+	   						<a class="btn btn-link btn-xs" th:href="@{/produtos/{id}(id=${produto.id})}">
+	   							<span class="icon-pencil"></span>
+	   						</a>
+	   					</td>
 															</tr>
 
 														</tbody>
