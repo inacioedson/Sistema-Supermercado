@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:brewer="http://brewer.algaworks.com"
+	layout:decorator="layout/LayoutPadrao">
+
+<head>
+	<title>SYSMARKET</title>
+</head>
+<body>
+	<section layout:fragment="conteudo">
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>
+					Cadastro de Fornecedor
+				</h1>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<form method="POST" class="form-vertical  js-form-loading" action="/fornecedores" th:object="${fornecedorendereco}">	
+				<input type="hidden" th:field="*{idFornecedor}"/>			
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="input-produto-preco">Nome</label> <!-- th:field="*{codigoBarras}" -->
+							<input id="input-produto-preco" type="text" th:field="*{fornecedorendereco.fornecedor.nome}" class="form-control" placeholder="Digite o Nome da Empresa"/>
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="input-cnpj">CNPJ</label>
+							<input id="input-cnpj" type="text" class="form-control" placeholder="CNPJ" th:field="*{fornecedorendereco.fornecedor.cnpj}"/>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="input-lograduro">Logradouro</label>
+							<input id="input-lograduro" type="text" th:field="*{logradouro}" class="form-control" placeholder="Digite o Logradouro"/>
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="input-bairro">Bairro</label>
+							<input id="input-bairro" type="text" class="form-control" placeholder="Digite o bairro" th:field="*{bairro}"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="input-cidade">Cidade</label>
+							<input id="input-cidade" type="text" th:field="*{cidade}" class="form-control" placeholder="Digite a Cidade"/>
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="input-estado">Estado</label>
+							<input id="input-estado" type="text" class="form-control" placeholder="Digite o Estado" th:field="*{estado}"/>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="input-pais">Pais</label>
+							<input id="input-pais" type="text" th:field="*{pais}" class="form-control" placeholder="Digite o Pais"/>
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="input-cep">CEP</label>
+							<input id="input-cep" type="text" class="form-control" placeholder="CEP" th:field="*{cep}"/>
+						</div>
+					</div>
+				</div>
+					
+				
+		
+				
+				
+				<div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+					<a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a>
+					<a href="#" class="btn  btn-link  aw-btn-link-danger" onclick="excluir()">Excluir este produto</a>
+				</div>
+		
+			</form>
+		</div>
+	</section>
+</body>
+</html>
