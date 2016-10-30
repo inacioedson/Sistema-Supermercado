@@ -17,10 +17,17 @@ public class Fornecedor {
 	private long idFornecedor;
 	private String nome;
 	private String cnpj;
+	private String telefone;
 	
-	public Fornecedor(String nome, String cnpj){
+	public Fornecedor(){
+		
+	}
+	
+	public Fornecedor(long idFornecedor, String nome, String cnpj, String telefone){
+		this.idFornecedor= idFornecedor;
 		this.nome=nome;
 		this.cnpj=cnpj;
+		this.telefone = telefone;
 	}
 	
 	
@@ -42,6 +49,16 @@ public class Fornecedor {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+	
+	
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

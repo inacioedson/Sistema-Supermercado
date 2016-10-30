@@ -11,7 +11,7 @@ import com.ifgoiano.supermecado.model.Fornecedor;
 public interface Fornecedores extends JpaRepository<Fornecedor,Long > {
 
 	
-	@Query("SELECT new Fornecedor(f.nome,f.cnpj) FROM Fornecedor f ")
+	@Query("SELECT new Fornecedor(f.idFornecedor,f.nome,f.cnpj,f.telefone) FROM Fornecedor f ")
 	List<Fornecedor> consulta();
 	
 }
