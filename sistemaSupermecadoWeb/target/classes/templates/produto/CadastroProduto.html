@@ -17,23 +17,16 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-			<div class="alert  alert-danger  alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<i class="fa  fa-exclamation-circle"></i> Já existe um produto com o
-				nome informado.
-			</div>
+			
 
 								<form name="formProduto" class="form-vertical js-form-loading" method="POST" onsubmit="return validaFormCadProduto()" action="/produtos" th:object="${produto}">
 
-			
+					<input type="hidden" th:field="*{id}"/>
 
 				<div class="form-group"
 					th:classappend="${#fields.hasErrors('codigoBarras')} ? has-error">
 					<label for="input-produto-codigo">Codigo de Barras</label> <input
-						id="input-produto-codigo" type="text" class="form-control"
+						id="input-produto-codigo" type="text" class="form-control "
 						th:field="*{codigoBarras}" />
 				</div>
 
@@ -98,11 +91,10 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-sm-2">
-						<label for="focusCategoria"> </label> <a
-							th:href="@{/categorias/novo}"><button type="button"
-								class="form-control btn btn-success">
-								Nova Categoria <i class="icon-plus icon-white"></i>
+					<div class="col-sm-1">
+						<label for="focusCategoria"> </label> <a data-toggle="modal" data-target="#confirmacaoExclusaoModal"
+							><button type="button"
+								class="form-control btn btn-primary"><i class="glyphicon glyphicon-plus"></i>
 							</button></a>
 					</div>
 				</div>
@@ -115,6 +107,7 @@
 		</div>
 
 		</form>
+		<div layout:include="categoria/CadastroCategoria"></div>
 		</div>
 	</section>
 </body>
