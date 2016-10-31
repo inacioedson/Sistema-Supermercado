@@ -19,19 +19,8 @@ public class Fornecedor {
 	private String cnpj;
 	private String telefone;
 	
-	public Fornecedor(){
-		
-	}
-	
-	public Fornecedor(long idFornecedor, String nome, String cnpj, String telefone){
-		this.idFornecedor= idFornecedor;
-		this.nome=nome;
-		this.cnpj=cnpj;
-		this.telefone = telefone;
-	}
-	
-	
 	public long getIdFornecedor() {
+	
 		return idFornecedor;
 	}
 	public void setIdFornecedor(long idFornecedor) {
@@ -41,14 +30,23 @@ public class Fornecedor {
 		return nome;
 	}
 	public void setNome(String nome) {
+		
 		this.nome = nome;
 	}
-	public String getCnpj() {
-		return cnpj;
-	}
-	public void setCnpj(String cnpj) {
+	
+	public void setCnpj(String cnpj) {		
+		
 		this.cnpj = cnpj;
+		System.out.println(this.cnpj);
 	}
+	
+	public String getCnpj() {
+		
+		System.out.println(this.cnpj);
+		return cnpj ;
+		
+	}
+	
 	
 	
 	public String getTelefone() {

@@ -3,12 +3,15 @@ package com.ifgoiano.supermecado.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name="fornecedores_enderecos")
@@ -18,7 +21,7 @@ public class FornecedorEndereco {
 	@Column(name = "pk_endereco")
 	private long idEndereco;
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.PERSIST )
 	@JoinColumn(name = "fk_fornecedor")
 	private Fornecedor fornecedor;
 	
@@ -28,6 +31,20 @@ public class FornecedorEndereco {
 	private String estado;
 	private String pais;
 	private String cep;
+	
+	
+	
+/*	public FornecedorEndereco(long idEndereco, String logradouro, long idFornecedor, String nome, Fornecedor fornecedor) {
+		super();
+		idFornecedor = this.getFornecedor().getIdFornecedor();
+		nome = this.getFornecedor().getNome();		
+		this.idEndereco = idEndereco;		
+		this.logradouro = logradouro;
+		this.fornecedor = fornecedor;
+		
+	}
+		*/
+
 	public long getIdEndereco() {
 		return idEndereco;
 	}
