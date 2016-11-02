@@ -70,7 +70,7 @@ public class FornecedorController {
 	@RequestMapping("{codigo}")//Aqui estamos recebemos o valor da variavel que vem da view
 	public ModelAndView edicao(@PathVariable Long codigo , @ModelAttribute("endereco") FornecedorEndereco endereco   ){//declaramos o @pathvariable + mais uma variavel para que possamos receber o valor
 		System.out.println(codigo);												// e trabalhamos com ela
-		 endereco = fornEnd.findByCodigo(codigo);//estamos recuperando o codigo do bando de dados
+		// endereco = fornEnd.findByCodigo(codigo);//estamos recuperando o codigo do bando de dados
 		System.out.println(endereco);
 		System.out.println(endereco.getFornecedor());
 		ModelAndView mv = new ModelAndView("fornecedor/CadastroFornecedor");

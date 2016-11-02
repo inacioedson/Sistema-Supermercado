@@ -17,6 +17,8 @@ public class Fornecedor {
 	private long idFornecedor;
 	private String nome;
 	private String cnpj;
+	
+	@Column(name="telefone")
 	private String telefone;
 	
 	public long getIdFornecedor() {
