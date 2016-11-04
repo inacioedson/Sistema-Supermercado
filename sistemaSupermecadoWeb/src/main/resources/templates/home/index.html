@@ -66,8 +66,8 @@
 		        <div class="aw-box__icon">
 		          <i class="fa  fa-users  fa-3x"></i>
 		        </div>
-		        <div class="aw-box__value">1.298</div>
-		        <div class="aw-box__title">Total de clientes</div>
+		        <div class="aw-box__value" th:each="totalForn : ${totalFornecedor}" th:text="*{totalForn}">1.298</div>
+		        <div class="aw-box__title">Total de Fornecedores</div>
 		      </div>
 		    
 		    </div>

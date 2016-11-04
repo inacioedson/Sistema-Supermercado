@@ -20,36 +20,33 @@
 		</div>	
 
 		<div class="container-fluid">
-			<form method="POST" class="form-vertical  js-form-loading" action="/fornecedores" th:object="${endereco}" >	
-				  <input type="hidden" th:field="*{fornecedor.idFornecedor}"/>	 	 
+			
+			<form method="POST" class="form-vertical  js-form-loading" action="/fornecedores" th:object="${fornecedor}" >
+				<div layout:include="layout/mensagemGeral">
+				</div>
+				<div layout:include="layout/mensagemErro">
+				</div>	
+				   <!-- <input type="hidden" th:field="*{idFornecedor}"/>	 --> 	 
 				<div class="row">
 					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="input-produto-preco">Nome</label> <!-- th:field="*{codigoBarras}" -->
-							<input id="input-produto-preco" type="text"  class="form-control" placeholder="Digite o Nome da Empresa" name="nome" th:value="${fornecedor.nome}"/>
+						<div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
+							<label for="nome">Nome</label> 																		
+							<input id="nome" type="text"  class="form-control" placeholder="Digite o Nome da Empresa" th:field="*{nome}" />
 
-						</div>																						<!-- th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}" -->
+						</div>																						
 					</div>
 					
 					<div class="col-sm-3">
-						<div class="form-group">
-
+						<div class="form-group" th:classappend="${#fields.hasErrors('cnpj')} ? has-error">
 							<label for="cnpj" >CNPJ</label>
-							<input id="cnpj" type="text" class="form-control" placeholder="CNPJ" name="cnpj"   />						
-
-							<label for="input-cnpj">CNPJ</label>
-							<input id="input-cnpj" type="text" class="form-control" placeholder="CNPJ" name="cnpj" th:value="${fornecedor.cnpj}" />						
-
+							<input id="cnpj" type="text" class="form-control" placeholder="CNPJ" th:field="*{cnpj}"/>			
 						</div>
 					</div>
 					
 					<div class="col-sm-3">
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('telefone')} ? has-error">
 							<label for="input-cnpj">Telefone</label>
-
-							<input id="input-cnpj" type="text" class="form-control" placeholder="Seu Contato" name="telefone" th:text="${telefone}"/>						
-
-							<input id="input-cnpj" type="text" class="form-control" placeholder="Seu Contato" name="telefone" th:value="${fornecedor.telefone}"/>						
+							<input id="input-cnpj" type="text" class="form-control" placeholder="Seu Contato" th:field="*{telefone}"/>						
 
 						</div>
 					</div>
@@ -60,9 +57,9 @@
 						<div class="form-group">
 							<label for="input-lograduro">Logradouro</label>
 
-							<input id="input-lograduro" type="text"  class="form-control"  th:field="*{logradouro}"/>
+							<input id="input-lograduro" type="text" placeholder="Digite o Logradouro" class="form-control"  th:field="*{logradouro}"/>
 
-							<input id="input-lograduro" type="text"  class="form-control" placeholder="Digite o Logradouro" th:field="*{logradouro}"/>
+							
 
 						</div>
 					</div>
@@ -76,14 +73,14 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-4">
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('cidade')} ? has-error">
 							<label for="input-cidade">Cidade</label>
 							<input id="input-cidade" type="text"  class="form-control" placeholder="Digite a Cidade" th:field="*{cidade}"/>
 						</div>
 					</div>
 					
 					<div class="col-sm-3">
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('estado')} ? has-error">
 							<label for="input-estado">Estado</label>
 							<input id="input-estado" type="text" class="form-control" placeholder="Digite o Estado" th:field="*{estado}"/>
 						</div>
@@ -99,21 +96,19 @@
 					</div>
 					
 					<div class="col-sm-3">
-						<div class="form-group">
+						<div class="form-group" th:classappend="${#fields.hasErrors('cep')} ? has-error">
 							<label for="input-cep">CEP</label>
 							<input id="input-cep" type="text" class="form-control" placeholder="CEP" th:field="*{cep}" />
 						</div>
 					</div>
-				</div>
-					
-				
+				</div>			
 		
 				
 				
 				<div class="form-group">
 					<button class="btn  btn-primary" type="submit">Salvar</button>
-					<a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a>
-					<a href="#" class="btn  btn-link  aw-btn-link-danger" onclick="excluir()">Excluir este produto</a>
+					<a th:href="@{/fornecedores/}" class="btn  btn-default">Cancelar</a>
+					<a th:href="@{/fornecedores/}" class="btn  btn-link  aw-btn-link-danger" onclick="excluir()">Voltar</a>
 				</div>
 		
 			</form>
