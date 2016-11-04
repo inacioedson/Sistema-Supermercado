@@ -4,17 +4,21 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ifgoiano.supermecado.model.Fornecedor;
-import com.ifgoiano.supermecado.model.FornecedorEndereco;
 import com.ifgoiano.supermecado.repository.Fornecedores;
-import com.ifgoiano.supermecado.repository.FornecedoresEnderecos;
+import com.ifgoiano.supermecado.service.CadastroFornecedorService;
+import com.ifgoiano.supermecado.service.exception.FornecedorNomeJaCadastradoException;
+
+
 
 
 
@@ -28,28 +32,35 @@ public class FornecedorController {
 	private Fornecedores forne;
 	
 	@Autowired
-	private FornecedoresEnderecos fornEnd;
-	
+	private CadastroFornecedorService cadastroFornecedorService;
 	
 	@RequestMapping("/novo")
-	public ModelAndView novo(){		
+	public ModelAndView novo(Fornecedor fo){		
 		ModelAndView mv = new ModelAndView("fornecedor/CadastroFornecedor");	
-		mv.addObject("endereco", new FornecedorEndereco());
-		mv.addObject("fornecedor", new Fornecedor());
-		
+		mv.addObject("fornecedor", fo);			
 		return mv;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView salvar( Fornecedor fornece, FornecedorEndereco endereco){
-		System.out.println(fornece.getCnpj());
-		System.out.println(fornece);
-		endereco.setFornecedor(fornece);		
-		fornEnd.save(endereco);
+	public String salvar(@Validated Fornecedor fornecedor, Errors erros, RedirectAttributes attributes){
 		
-		ModelAndView mv = new ModelAndView("fornecedor/CadastroFornecedor");
-		//mv.addObject("mensagem", "Funcionario salvo com sucesso!");
-		return mv;
+		if(erros.hasErrors()){
+			return "fornecedor/CadastroFornecedor";
+		}
+		
+		try{
+			cadastroFornecedorService.salvar(fornecedor);
+			attributes.addFlashAttribute("mensagem", "Título salvo com sucesso!");
+			return "redirect:/fornecedores/novo";
+			
+		}catch(FornecedorNomeJaCadastradoException e ){
+			erros.rejectValue("nome", e.getMessage(),e.getMessage());
+			return "fornecedor/CadastroFornecedor";
+		}
+		
+		
+		
+		
 		
 	}
 	
@@ -68,18 +79,12 @@ public class FornecedorController {
 	
 	
 	@RequestMapping("{codigo}")//Aqui estamos recebemos o valor da variavel que vem da view
-	public ModelAndView edicao(@PathVariable Long codigo , @ModelAttribute("endereco") FornecedorEndereco endereco   ){//declaramos o @pathvariable + mais uma variavel para que possamos receber o valor
-		System.out.println(codigo);												// e trabalhamos com ela
-		// endereco = fornEnd.findByCodigo(codigo);//estamos recuperando o codigo do bando de dados
-		System.out.println(endereco);
-		System.out.println(endereco.getFornecedor());
+	public ModelAndView edicao(@PathVariable Long codigo   ){//declaramos o @pathvariable + mais uma variavel para que possamos receber o valor
+														// e trabalhamos com ela
+	   //estamos recuperando o codigo do bando de dados
+	    Fornecedor fornecedor = forne.findOne(codigo);
 		ModelAndView mv = new ModelAndView("fornecedor/CadastroFornecedor");
-		Fornecedor fornecedor = endereco.getFornecedor();
-		mv.addObject(fornecedor);
-		
-		//mv.addObject("endereco");//passamos o que recuperamos para a view
-		System.out.println(endereco);
-		System.out.println(endereco.getFornecedor());
+		mv.addObject(fornecedor);//passamos o que recuperamos para a view
 		return mv;
 		
 	}
@@ -87,3 +92,6 @@ public class FornecedorController {
 	
 
 }
+
+
+
