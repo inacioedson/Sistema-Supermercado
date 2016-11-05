@@ -19,7 +19,7 @@ public class CadastroFornecedorService {
 		Optional<Fornecedor> fornecedorExistente = fos.findByNomeContaining(fo.getNome());
 		System.out.println(fornecedorExistente.toString());
 		if(fornecedorExistente.isPresent()){
-			throw new FornecedorNomeJaCadastradoException("Nome já cadastrado");
+			throw new FornecedorNomeJaCadastradoException(fo.getNome()+" já cadastrado");
 		}
 		fos.save(fo);
 	}
