@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="categorias")
@@ -16,12 +19,17 @@ public class Categoria {
 	@Column(name="pk_categoria")
 	private long id;
 	
-	
+	@NotEmpty(message="Nome é obrigatório !")
+	@NotNull(message="Nome é obrigatório !")
 	private String nome;
 	
+	@NotEmpty(message="Descrição é obrigatória !")
+	@NotNull(message="Descrição é obrigatória !")
 	private String descricao;
 	
 	
+
+
 	public long getId() {
 		return id;
 	}

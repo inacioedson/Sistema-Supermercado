@@ -61,7 +61,11 @@ public class Produto {
 	@Column(name = "qtd_minimo")
 	private BigDecimal qtdMinimo;
 	
+	@Column(name="preco_unitario")
+	private BigDecimal precoUnitario;
 	
+
+
 	@Column(name = "fk_categoria")
 	private int idCategoria ;
 
@@ -100,6 +104,14 @@ public class Produto {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+	
+	public BigDecimal getPrecoUnitario() {
+		return precoUnitario;
+	}
+
+	public void setPrecoUnitario(BigDecimal precoUnitario) {
+		this.precoUnitario = precoUnitario;
 	}
 
 	public long getId() {
