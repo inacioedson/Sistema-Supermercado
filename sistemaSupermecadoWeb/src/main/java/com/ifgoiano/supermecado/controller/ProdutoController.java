@@ -56,9 +56,7 @@ public class ProdutoController {
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 
 		mv.addObject("categorias", todosCategoria);
-
 		mv.addObject(new Produto());
-
 		return mv;
 
 	}
@@ -74,8 +72,7 @@ public class ProdutoController {
 		}
 
 		produtos.save(prod);
-
-		attributes.addFlashAttribute("mensagem","Titulo salvo com sucesso!");
+		attributes.addFlashAttribute("mensagem","Produto salvo com sucesso!");
 
 		return "redirect:/produtos/novo";
 
@@ -107,6 +104,14 @@ public ModelAndView edicao(@PathVariable("id") Produto prod){
 	mv.addObject(prod);
 
 	return mv;
+	}
+	
+	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
+	public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
+		produtos.delete(id);
+		
+		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
+		return "redirect:/produtos";
 	}
 	}
 
