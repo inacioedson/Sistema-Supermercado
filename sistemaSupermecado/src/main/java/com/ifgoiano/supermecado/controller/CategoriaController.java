@@ -21,14 +21,14 @@ public class CategoriaController {
 	@RequestMapping("/novo")
 	public String novo(){
 		
-		return"CadastroCategoria";
+		return"CadastroCategoria2";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView salvar(Categoria catego){
 		
 		categorias.save(catego);
-		ModelAndView mv = new ModelAndView("CadastroCategoria");	
+		ModelAndView mv = new ModelAndView("CadastroCategoria2");	
 		mv.addObject("mensagem", "A operação foi completa com sucesso");
 		return mv;
 		
