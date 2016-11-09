@@ -24,7 +24,7 @@ jQuery(document).ready(function($) {
 		var search = {}
 		search["nome"] = $("#nome").val();
 		search["descricao"] = $("#descricao").val();
-		var div=$('#refresh').html();
+		
 		$.ajax({
 			type : "POST",
 			contentType : "application/json",
@@ -41,6 +41,8 @@ jQuery(document).ready(function($) {
 				    let options = ''; 
 				    $("#focusCategoria").empty().append('<option value="0">-Seleccione-</option>');
 				    $.each(response, function(index,nome) {
+				    	//outra forma de adicionar uma option
+				    	// jQuery("<option/>").text(nome.nome).attr("value", nome.id).appendTo("#focusCategoria");
 			            options += '<option value="' + nome.id + '">' + nome.nome + '</option>';
 			            $("#focusCategoria").append(options);
 			            });
