@@ -1,6 +1,7 @@
 
 package com.ifgoiano.supermecado.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,14 +51,19 @@ public class CategoriaController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody Categoria categoria(@Validated @RequestBody Categoria catego,Errors errors,RedirectAttributes attributes){
+	public @ResponseBody Categoria getCategoriaJSON(@Validated @RequestBody Categoria catego,Errors errors,RedirectAttributes attributes){
+		// novo objeto para ser convertido em json para enviar pro front
+		Categoria cat = new Categoria();
+		cat.setId(catego.getId());
+		cat.setDescricao(catego.getDescricao());
+		cat.setNome(catego.getNome());
 		if(errors.hasErrors()){
-			return new Categoria();
+			return cat;
 		}
 		categorias.save(catego);
-
+		
 		attributes.addFlashAttribute("mensagem","Categoria salva com sucesso!");
-		return new Categoria();
+		return cat;
 		
 	}
 	
@@ -85,5 +91,10 @@ public ModelAndView edicao(@PathVariable("id") Categoria cate){
 		return "redirect:/categorias";
 	}
 
+	@RequestMapping(value="/data/jsonList", method=RequestMethod.GET)
+	public @ResponseBody List<Categoria> getDataList() {
+		List<Categoria> todosCategoria = categorias.findAll();
+	    return todosCategoria;
+	}
 }
 

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event) {
 	let button = $(event.relatedTarget);
 	
@@ -8,15 +7,16 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event) {
 	
 	let modal = $(this);
 	let form = modal.find('form');
-	let url = form.data('url-base');
 	let action = button.data('action');
 	if (!action.endsWith('/')) {
 		action += '/';
 	}
-	form.attr('action', url+ action + codigoTitulo);
+	form.attr('action', action + codigoTitulo);
 	
 	modal.find('.modal-body span').html('Tem certeza que deseja excluir o título <strong>' + descricaoTitulo + '</strong>?');
+	
 });
+
 jQuery(document).ready(function($) {
 
 	$("#search-form").click(function(event) {
@@ -32,7 +32,7 @@ jQuery(document).ready(function($) {
 			dataType : 'json',
 			timeout : 100000,
 			success : function(data) {
-				console.log("SUCCESS: ", data);
+				console.log("SUCCESS: ", data.nome);
 				display(data);
 			},
 			error : function(e) {
@@ -47,43 +47,17 @@ jQuery(document).ready(function($) {
 		// Prevent the form from submitting via the browser.
 		event.preventDefault();
 
-
 	});
-
+	
+	
 });
-=======
-$('#confirmacaoExclusaoModal').on('show.bs.modal', function(event) {
-	let button = $(event.relatedTarget);
-	
-	let codigoTitulo = button.data('id');
-	var descricaoTitulo = button.data('nome');
-
-	
-	let modal = $(this);
-	let form = modal.find('form');
-	let action = button.data('action');
-	if (!action.endsWith('/')) {
-		action += '/';
-	}
-	form.attr('action', action + codigoTitulo);
-	
-	modal.find('.modal-body span').html('Tem certeza que deseja excluir o título <strong>' + descricaoTitulo + '</strong>?');
-});
-jQuery(document).ready(function(){
-	jQuery('#ajax_form').submit(function(){
-		var dados = jQuery( this ).serialize();
-
-		jQuery.ajax({
-			type: "POST",
-			url: "/categoria",
-			data: dados,
-			success: function( data )
-			{
-				alert( data );
-			}
-		});
-		
-		return false;
+$('#close').click( function (e) {
+	$.getJSON("/categorias/data/jsonList", function(response){ 
+	    $("#focusCategoria option").remove(); 
+	        let options = ''; 
+	        $.each(response, function(index,nome) {
+	            options += '<option value="' + nome.id + '">' + nome.nome + '</option>';
+	            $("#focusCategoria").html(options);
+	        });
 	});
 });
->>>>>>> master
