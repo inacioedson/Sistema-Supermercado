@@ -33,15 +33,11 @@ jQuery(document).ready(function($) {
 			timeout : 100000,
 			success : function(data) {
 				console.log("SUCCESS: ", data.nome);
-				display(data);
+				$("#focusCategoria").append('<option value='+data.id+'>'+data.nome+'</option>');
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
 				display(e);
-			},
-			done : function(e) {
-				console.log("DONE");
-				enableSearchButton(true);
 			}
 		});
 		// Prevent the form from submitting via the browser.
@@ -51,7 +47,8 @@ jQuery(document).ready(function($) {
 	
 	
 });
-$('#close').click( function (e) {
+//função que retorna um array de valores e com o array forma um select
+/*$('#close').click( function (e) {
 	$.getJSON("/categorias/data/jsonList", function(response){ 
 	    $("#focusCategoria option").remove(); 
 	        let options = ''; 
@@ -61,3 +58,4 @@ $('#close').click( function (e) {
 	        });
 	});
 });
+*/
