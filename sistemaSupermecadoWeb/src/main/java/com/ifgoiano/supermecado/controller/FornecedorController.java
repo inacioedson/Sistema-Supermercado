@@ -40,6 +40,13 @@ public class FornecedorController {
 		mv.addObject("fornecedor", fo);			
 		return mv;
 	}
+	@RequestMapping(value="/fornecedores/{codigo}", method = RequestMethod.POST)
+	public String atualizar(@PathVariable Long codigo,Fornecedor fornecedor, RedirectAttributes attributes){		
+		forne.save(fornecedor);
+		attributes.addFlashAttribute("mensagem", "Fornecedor Atualizado com sucesso!");		
+		return "redirect:/fornecedores";
+	}
+	
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String salvar(@Validated Fornecedor fornecedor, Errors erros, RedirectAttributes attributes){
@@ -49,8 +56,16 @@ public class FornecedorController {
 		}
 		
 		try{
-			cadastroFornecedorService.salvar(fornecedor);
-			attributes.addFlashAttribute("mensagem", "Título salvo com sucesso!");
+			if(fornecedor.getIdFornecedor() !=0){
+				forne.save(fornecedor);
+				attributes.addFlashAttribute("mensagem", "Fornecedor Atualizado com sucesso!");
+				return "redirect:/fornecedores/novo";
+			}else
+			{
+				cadastroFornecedorService.salvar(fornecedor);
+				attributes.addFlashAttribute("mensagem", "Título salvo com sucesso!");
+				//return "redirect:/fornecedores/novo";
+			}
 			return "redirect:/fornecedores/novo";
 			
 		}catch(FornecedorNomeJaCadastradoException e ){
@@ -88,6 +103,8 @@ public class FornecedorController {
 		return mv;
 		
 	}
+	
+	
 	
 	
 

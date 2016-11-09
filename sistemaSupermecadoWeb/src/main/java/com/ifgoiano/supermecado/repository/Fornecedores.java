@@ -24,4 +24,6 @@ public interface Fornecedores extends JpaRepository<Fornecedor,Long > {
 	
 	public Optional<Fornecedor> findByNomeContaining(String nome);
 	
+	public List<Fornecedor> findByNomeContainingIgnoreCase(String nome);
+	
 }

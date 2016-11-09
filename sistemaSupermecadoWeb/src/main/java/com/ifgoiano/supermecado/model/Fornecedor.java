@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 @Entity
-@Table(name="fornecedoress")
+@Table(name="fornecedores")
 public class Fornecedor {
 	
 	@Id
