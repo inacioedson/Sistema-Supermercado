@@ -54,7 +54,6 @@ public class CategoriaController {
 	public @ResponseBody Categoria getCategoriaJSON(@Validated @RequestBody Categoria catego,Errors errors,RedirectAttributes attributes){
 		// novo objeto para ser convertido em json para enviar pro front
 		Categoria cat = new Categoria();
-		cat.setId(catego.getId());
 		cat.setDescricao(catego.getDescricao());
 		cat.setNome(catego.getNome());
 		if(errors.hasErrors()){
@@ -90,12 +89,12 @@ public ModelAndView edicao(@PathVariable("id") Categoria cate){
 		attributes.addFlashAttribute("mensagem", "Categoria excluída com sucesso!");
 		return "redirect:/categorias";
 	}
-/*Envia um array em json do tipo categoria 
+
 	@RequestMapping(value="/data/jsonList", method=RequestMethod.GET)
 	public @ResponseBody List<Categoria> getDataList() {
 		List<Categoria> todosCategoria = categorias.findAll();
 	    return todosCategoria;
 	}
-	*/
+
 }
 

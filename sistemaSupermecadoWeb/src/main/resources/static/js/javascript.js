@@ -24,6 +24,7 @@ jQuery(document).ready(function($) {
 		var search = {}
 		search["nome"] = $("#nome").val();
 		search["descricao"] = $("#descricao").val();
+		var div=$('#refresh').html();
 		$.ajax({
 			type : "POST",
 			contentType : "application/json",
@@ -33,7 +34,18 @@ jQuery(document).ready(function($) {
 			timeout : 100000,
 			success : function(data) {
 				console.log("SUCCESS: ", data.nome);
-				$("#focusCategoria").append('<option value='+data.id+'>'+data.nome+'</option>');
+				// ao entrar em success inicia uma funcao de criar uma option com o ultimo valor adicionado;
+				//$("#focusCategoria").append('<option value='+data.idCategoria+'>'+data.nome+'</option>');
+				$.getJSON("/categorias/data/jsonList", function(response){ 
+				    $("#focusCategoria option").remove(); 
+				    let options = ''; 
+				    $("#focusCategoria").empty().append('<option value="0">-Seleccione-</option>');
+				    $.each(response, function(index,nome) {
+			            options += '<option value="' + nome.id + '">' + nome.nome + '</option>';
+			            $("#focusCategoria").append(options);
+			            });
+				});
+		
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
@@ -42,7 +54,7 @@ jQuery(document).ready(function($) {
 		});
 		// Prevent the form from submitting via the browser.
 		event.preventDefault();
-
+		$('#refresh').html(div);
 	});
 	
 	
@@ -58,4 +70,9 @@ jQuery(document).ready(function($) {
 	        });
 	});
 });
+// outra funcao de adicionar value
+ $("#focusCategoria").empty().append('<option value="">-Seleccione-</option>');
+ $.each(data, function (idx, item) {
+                     jQuery("<option/>").text(item.nome).attr("value", item.id).appendTo("#focusCategoria");
+                 })
 */
