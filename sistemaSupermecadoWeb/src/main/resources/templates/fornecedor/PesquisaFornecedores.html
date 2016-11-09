@@ -22,7 +22,7 @@
 					
 					<div class="col-xs-2">
 						<div class="aw-page-header-controls">
-							<a class="btn btn-primary" th:href="@{/fornecedores/novo}">
+							<a class="btn btn-primary" href="fornecedores/novo">
 								<i class="fa  fa-plus-circle"></i> <span class="hidden-xs  hidden-sm">Novo Fornecedor</span>
 							</a>
 						</div>
@@ -47,8 +47,16 @@
 								<input type="text" class="form-control  aw-form-control-inline-sm" placeholder=""/>								
 							</div>
 						</div>
-					</div>			
+					</div>
 					
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="input-produto-estoque">Telefone</label>							
+							<div class="form-inline">
+								<input type="text" class="form-control  aw-form-control-inline-sm"/>								
+							</div>
+						</div>
+					</div>
 				</div>
 				
 			    <div class="form-group">
@@ -79,19 +87,17 @@
 								<td class="text-center" th:text="${fo.telefone}"></td>								
 								<td class="text-center">
 								
-									
+									<div class="btn-group">
 										<a class="btn btn-link btn-xs" th:href="@{/fornecedores/{codigo}(codigo=${fo.idFornecedor})}"
 											th:attr= "data-codigo=${fo.idFornecedor}"><!--Aqui usamos o data-codigo para que o codigo fica disponivel para nosso javascript
 											 e usamos o th:attr para o thymelead entender -->
 											<span class="glyphicon glyphicon-pencil"></span>
 										</a>
 										
-										<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoModal">
-											<span class="glyphicon glyphicon-remove"></span>										
-										</a>
-										
-										
-									
+										<button class="btn  btn-default btn-xs">
+											<i class="fa  fa-trash"></i>
+										</button>
+									</div>
 									
 								</td>
 							</tr>
