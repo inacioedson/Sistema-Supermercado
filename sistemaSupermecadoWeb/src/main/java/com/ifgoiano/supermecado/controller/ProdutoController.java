@@ -1,4 +1,3 @@
-
 package com.ifgoiano.supermecado.controller;
 
 import java.util.Arrays;
@@ -38,7 +37,7 @@ import com.ifgoiano.supermecado.repository.Produtos;
 @RequestMapping("/produtos")
 public class ProdutoController {
 
-	private static final String CADASTRO_VIEW = "produto/CadastroProduto";
+	private static final String CADASTRO_VIEW= "produto/CadastroProduto";
 
 	@Autowired
 
@@ -50,30 +49,33 @@ public class ProdutoController {
 
 	@RequestMapping("/novo")
 
-	public ModelAndView novo() {
+	public ModelAndView novo(){
 
 		List<Categoria> todosCategoria = categorias.findAll();
 
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 
 		mv.addObject("categorias", todosCategoria);
+
 		mv.addObject(new Produto());
+
 		return mv;
 
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST)
 
-	public String salvar(@Validated Produto prod, Errors errors, RedirectAttributes attributes) {
+	public String salvar(@Validated Produto prod,Errors errors,RedirectAttributes attributes){
 
-		if (errors.hasErrors()) {
+		if(errors.hasErrors()){
 
 			return CADASTRO_VIEW;
 
 		}
 
 		produtos.save(prod);
-		attributes.addFlashAttribute("mensagem", "Produto salvo com sucesso!");
+
+		attributes.addFlashAttribute("mensagem","Titulo salvo com sucesso!");
 
 		return "redirect:/produtos/novo";
 
@@ -81,7 +83,7 @@ public class ProdutoController {
 
 	@RequestMapping
 
-	public ModelAndView pesquisar() {
+	public ModelAndView pesquisar(){
 
 		List<Produto> todosProduto = produtos.findAll();
 
@@ -94,24 +96,17 @@ public class ProdutoController {
 	}
 
 	@RequestMapping("{id}")
-	public ModelAndView edicao(@PathVariable("id") Produto prod) {
+public ModelAndView edicao(@PathVariable("id") Produto prod){
 
-		List<Categoria> todosCategoria = categorias.findAll();
+	List<Categoria> todosCategoria = categorias.findAll();
 
-		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
+	ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 
-		mv.addObject("categorias", todosCategoria);
+	mv.addObject("categorias", todosCategoria);
 
-		mv.addObject(prod);
+	mv.addObject(prod);
 
-		return mv;
+	return mv;
+	}
 	}
 
-	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-	public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
-		produtos.delete(id);
-
-		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
-		return "redirect:/produtos";
-	}
-}
