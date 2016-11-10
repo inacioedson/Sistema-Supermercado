@@ -8,9 +8,9 @@
 	layout:decorator="layout/LayoutPadrao"
 >
 
-<div class="modal fade" id="cadastroCategoria" tabindex="-1">
+<div class="modal fade" id="cadastroCategoria" tabindex="-1" th:fragment="cadastroCategoria">
 	<div class="modal-dialog">
-		<form action="" method="POST">
+		<form class="form" th:action="@{/categorias}">
 			
 			<div class="modal-content">
 				<div class="modal-header">
