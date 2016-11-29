@@ -1,69 +1,52 @@
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:data="http://www.thymeleaf.org/extras/data"
 	xmlns:brewer="http://brewer.algaworks.com"
 	layout:decorator="layout/LayoutPadrao">
-	
 <head>
-
-	<title>
-	
-		SysTeMark
-	
-	</title>
-
+<title>SysteMark</title>
 </head>
-
 <body>
 
-<section layout:fragment="conteudo">
+	<section layout:fragment="conteudo">
 
-<div class="modal fade" id="fechamento" tabindex="-1" th:fragment="modal">
-	<div class="modal-dialog">
-	
-		<form class="form" th:action="@{/fechamento}">
-			
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title"><strong>Fechamentos</strong></h4>
-				</div>
-									<!-- <div class="alert  alert-danger  hidden  js-mensagem-cadastro-rapido-estilo" role="alert"></div> -->
-				
-				<div class="modal-body">
-		
-									
-											<div class="form-group">
-											<label for="nome">Data do Fechamento:</label>
-												<input class="form-control"  id="data_fechamento" type="text"
-													name="data_fechamento" />
-											</div>
-	
-											
-											<div class="form-group">
-											<label for="descricao">Saldo Final:</label>
-												<input type="text" class="form-control"
-													id="saldo_final"  name="saldo_final" /> <a
-													class="btn btn-link btn-xs"> 
-												</a>
-											</div>
-										
-				</div>
-				
-				<div class="modal-footer">
-				<button type="submit" id="search-form" class="btn btn-primary">Enviar</button>
-				<button type="reset" class="btn btn-defaul">Limpar</button>
-				</div>
+		<div class="page-header">
+
+			<div class="container-fluid">
+
+				<h1>Fechamentos</h1>
+
 			</div>
-		</form>
 
-	</div>
-</div>
+		</div>
+		<div class="container-fluid">
+			<form method="POST" class="form-vertical  js-form-loading" action="/fechamento" th:object="${fechamento}">
+			
+				<div class="form-group">
+					
+					<label for="input-data_fechamento">Data do fechamento</label>
+					<input id="input-data_fechamento" type="text" class="form-control" />
+					
+				</div>
+				
+				<div class="form-group">
+					
+					<label for="input-saldo_final">Saldo final</label>
+					<input id="input-saldo_final" type="text" class="form-control" />
+					
+				</div>
+				
+				 	
+				 <div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+					<a th:href="@{/fechamento}" class="btn  btn-default">Cancelar</a>
+				</div>
 
-</section>
+			</form>
+		</div>
 
+	</section>
 </body>
-
 </html>
